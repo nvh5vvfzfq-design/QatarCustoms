@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASR | Advanced Electric Propulsion</title>
+    <meta name="description"
+        content="ASR specializes in advanced electric motors for traction and aerospace. Powering the future of flight and motion.">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="logo.svg" alt="ASR Logo">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Powering the Future of<br>Flight & Motion</h1>
+            <p>Next-generation electric motors engineered for high-performance traction and aerospace applications.</p>
+            <a href="#about" class="btn btn-primary">Discover Our Tech</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>Engineering Excellence</h2>
+                <p>We bridge the gap between efficiency and power, delivering propulsion systems that redefine what's
+                    possible.</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>Aerospace Innovation</h3>
+                    <p>Lightweight, high-torque density motors designed for the rigorous demands of electric aviation
+                        and eVTOL aircraft.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Advanced Traction</h3>
+                    <p>High-efficiency powertrains for next-gen electric vehicles, ensuring maximum range and superior
+                        durability.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products/Services -->
+    <section id="products">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Solutions</h2>
+                <p>Tailored propulsion technologies for land and sky.</p>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-content">
+                        <i data-lucide="plane" class="product-icon"></i>
+                        <h3>Aero-Series Motors</h3>
+                        <p>Ultra-lightweight axial flux motors optimized for thrust-to-weight ratio.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-content">
+                        <i data-lucide="zap" class="product-icon"></i>
+                        <h3>Traction Drives</h3>
+                        <p>Integrated inverter-motor units for seamless EV integration and thermal management.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-content">
+                        <i data-lucide="cpu" class="product-icon"></i>
+                        <h3>Control Systems</h3>
+                        <p>Precision FOC controllers delivering millisecond response times and adaptive torque.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact Us</h2>
+                <p>Ready to electrify your project? Get in touch with our engineering team.</p>
+            </div>
+            <div class="contact-container">
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent (Demo)');">
+                    <input type="text" placeholder="Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <textarea rows="5" placeholder="Project Details" required></textarea>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 ASR Propulsion Systems. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

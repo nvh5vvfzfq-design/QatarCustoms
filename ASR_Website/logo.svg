@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Transparent Background -->
+  
+  <!-- Motor Body Group -->
+  <g fill="#FFFFFF" stroke="none">
+    <!-- Main Stator Housing (Rounded Rectangle) -->
+    <path d="M106 140 H406 A60 60 0 0 1 466 200 V340 A60 60 0 0 1 406 400 H106 A60 60 0 0 1 46 340 V200 A60 60 0 0 1 106 140 Z" />
+    
+    <!-- Top Junction Box -->
+    <rect x="196" y="80" width="120" height="60" rx="10" />
+    
+    <!-- Cooling Fins (Stylized lines cut out or added? Let's add them as extensions on the side or simplify) -->
+    <!-- Let's keep it clean. Protruding shafts -->
+    <rect x="16" y="230" width="30" height="80" rx="5" />
+    <rect x="466" y="230" width="30" height="80" rx="5" />
+    
+    <!-- Base/Mount -->
+    <path d="M156 400 L136 460 H376 L356 400 Z" />
+  </g>
+  
+  <!-- Inner Text Cutout (Transparent 'ASR') -->
+  <!-- Using a mask or simply placing the text in the complementary color if the bg is transparent logic. 
+       Better: Use 'fill="black"' for the text to represent "cutout" if on white, 
+       BUT user wants generic logo usage. 
+       Let's make the Motor WHITE and the Text TRANSPARENT (by path subtraction) or Color of background.
+       Wait, simple way: Text in dark blue #0B1E3B to match theme bg? 
+       Or better, use a mask to make text see-through. -->
+  <defs>
+    <mask id="textMask">
+      <rect x="0" y="0" width="512" height="512" fill="white" />
+      <text x="50%" y="58%" dominant-baseline="middle" text-anchor="middle" font-family="'Saira', sans-serif" font-weight="900" font-size="160" fill="black">ASR</text>
+    </mask>
+  </defs>
+  
+  <!-- Redraw Motor with Mask -->
+  <g mask="url(#textMask)" fill="#FFFFFF">
+     <!-- Main Housing -->
+    <path d="M106 140 H406 A60 60 0 0 1 466 200 V340 A60 60 0 0 1 406 400 H106 A60 60 0 0 1 46 340 V200 A60 60 0 0 1 106 140 Z" />
+    <!-- Top Box -->
+    <rect x="196" y="80" width="120" height="70" rx="10" />
+    <!-- Shafts -->
+    <rect x="10" y="240" width="40" height="60" rx="5" />
+    <rect x="462" y="240" width="40" height="60" rx="5" />
+    <!-- Base -->
+    <path d="M146 410 L126 470 H386 L366 410 Z" />
+    
+    <!-- Cooling Fins Details (Stripes) -->
+    <path d="M106 160 H406" stroke="#0B1E3B" stroke-width="0" /> 
+  </g>
+</svg>
