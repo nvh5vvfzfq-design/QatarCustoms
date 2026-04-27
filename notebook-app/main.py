@@ -43,21 +43,11 @@ async def health_check():
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
-    try:
-        # Modern Starlette/FastAPI expects request as the first argument
-        return templates.TemplateResponse(request, "index.html", {"is_admin": False})
-    except Exception as e:
-        import traceback
-        return HTMLResponse(content=f"<h1>Template Error</h1><pre>{traceback.format_exc()}</pre>", status_code=500)
+    return templates.TemplateResponse(request, "index.html", {"is_admin": False})
 
 @app.get("/admin", response_class=HTMLResponse)
 async def read_admin(request: Request):
-    try:
-        # Modern Starlette/FastAPI expects request as the first argument
-        return templates.TemplateResponse(request, "index.html", {"is_admin": True})
-    except Exception as e:
-        import traceback
-        return HTMLResponse(content=f"<h1>Template Error (Admin)</h1><pre>{traceback.format_exc()}</pre>", status_code=500)
+    return templates.TemplateResponse(request, "index.html", {"is_admin": True})
 
 @app.post("/upload")
 async def upload_pdf(file: UploadFile = File(...)):
