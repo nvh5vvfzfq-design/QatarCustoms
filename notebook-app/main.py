@@ -11,20 +11,23 @@ app = FastAPI()
 # In-memory storage for simplicity
 DOCUMENTS = {} 
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 # Mount static files
-app.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")
+app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), name="static")
+templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
 
 @app.on_event("startup")
 async def startup_event():
     # Load existing PDFs from uploads folder
-    if not os.path.exists("uploads"):
-        os.makedirs("uploads")
+    uploads_dir = os.path.join(BASE_DIR, "uploads")
+    if not os.path.exists(uploads_dir):
+        os.makedirs(uploads_dir)
     
-    for filename in os.listdir("uploads"):
+    for filename in os.listdir(uploads_dir):
         if filename.endswith(".pdf"):
             try:
-                path = os.path.join("uploads", filename)
+                path = os.path.join(uploads_dir, filename)
                 reader = PdfReader(path)
                 text = ""
                 for page in reader.pages:
@@ -45,7 +48,8 @@ async def read_admin(request: Request):
 @app.post("/upload")
 async def upload_pdf(file: UploadFile = File(...)):
     try:
-        file_location = f"uploads/{file.filename}"
+        uploads_dir = os.path.join(BASE_DIR, "uploads")
+        file_location = os.path.join(uploads_dir, file.filename)
         with open(file_location, "wb") as f:
             content = await file.read()
             f.write(content)
@@ -72,7 +76,8 @@ async def delete_document(filename: str):
         del DOCUMENTS[filename]
     
     # Remove from disk
-    file_path = os.path.join("uploads", filename)
+    uploads_dir = os.path.join(BASE_DIR, "uploads")
+    file_path = os.path.join(uploads_dir, filename)
     if os.path.exists(file_path):
         os.remove(file_path)
         return {"status": "Deleted", "filename": filename}
