@@ -143,7 +143,17 @@ async def chat(request: Request):
 
         model = genai.GenerativeModel(model_name)
         
-        prompt = f"You are a helpful assistant. Answer the question based ONLY on the following documents:\n\n{context}\n\nQuestion: {query}"
+        prompt = (
+            f"You are a helpful Qatar Customs Law assistant. Answer the question based ONLY on the following documents.\n\n"
+            f"IMPORTANT FORMATTING RULES:\n"
+            f"- When quoting or citing a specific law article, clause, or legal text, wrap it with [LAW] and [/LAW] tags.\n"
+            f"- Example: [LAW]Article 5: All goods entering the country shall be subject to customs duties unless exempted by law.[/LAW]\n"
+            f"- Your explanation and analysis should be OUTSIDE the [LAW] tags.\n"
+            f"- You may use multiple [LAW]...[/LAW] blocks if citing multiple articles.\n"
+            f"- Always provide your own explanation/answer in addition to the law citation.\n\n"
+            f"Documents:\n{context}\n\n"
+            f"Question: {query}"
+        )
         
         response = model.generate_content(prompt)
         return {"answer": response.text}

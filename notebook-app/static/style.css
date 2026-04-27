@@ -219,6 +219,57 @@ body {
     color: var(--text-muted);
 }
 
+/* Law Citation Styling */
+.answer-text {
+    margin-bottom: 12px;
+    line-height: 1.7;
+}
+
+.answer-text:last-child {
+    margin-bottom: 0;
+}
+
+.law-citation {
+    background: linear-gradient(135deg, #FFF8F0 0%, #FEF3E2 100%);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 0 12px 12px 0;
+    padding: 0;
+    margin: 14px 0;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(138, 21, 56, 0.08);
+    transition: box-shadow 0.2s ease;
+}
+
+.law-citation:hover {
+    box-shadow: 0 4px 14px rgba(138, 21, 56, 0.15);
+}
+
+.law-citation-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    background: rgba(138, 21, 56, 0.08);
+    color: var(--primary-color);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.law-citation-body {
+    padding: 14px 18px;
+    font-family: 'Cairo', 'Georgia', serif;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #3D2000;
+    font-style: italic;
+}
+
+.ai-message .law-citation + .answer-text {
+    margin-top: 14px;
+}
+
 /* Input Area */
 .input-area {
     padding: 30px 40px;

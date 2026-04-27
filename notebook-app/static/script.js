@@ -168,12 +168,49 @@ async function sendChat() {
     }
 }
 
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+function formatAnswer(text) {
+    // Split on [LAW]...[/LAW] blocks and render them distinctly
+    const parts = text.split(/\[LAW\]([\s\S]*?)\[\/LAW\]/gi);
+    let html = '';
+    for (let i = 0; i < parts.length; i++) {
+        if (i % 2 === 0) {
+            // Regular answer text
+            const trimmed = parts[i].trim();
+            if (trimmed) {
+                html += `<div class="answer-text">${escapeHtml(trimmed).replace(/\n/g, '<br>')}</div>`;
+            }
+        } else {
+            // Law citation
+            html += `<div class="law-citation">
+                <div class="law-citation-header">
+                    <span class="material-icons" style="font-size: 16px;">gavel</span>
+                    <span>Legal Reference</span>
+                </div>
+                <div class="law-citation-body">${escapeHtml(parts[i].trim()).replace(/\n/g, '<br>')}</div>
+            </div>`;
+        }
+    }
+    return html;
+}
+
 function addMessage(text, sender) {
     const div = document.getElementById('messagesContainer');
     const msg = document.createElement('div');
     msg.className = `message ${sender}-message`;
-    msg.textContent = text;
     msg.dir = "auto"; // Auto-detect LTR/RTL
+
+    if (sender === 'ai') {
+        msg.innerHTML = formatAnswer(text);
+    } else {
+        msg.textContent = text;
+    }
+
     div.appendChild(msg);
     div.scrollTop = div.scrollHeight;
 }
