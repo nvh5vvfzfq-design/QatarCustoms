@@ -37,6 +37,10 @@ async def startup_event():
             except Exception as e:
                 print(f"Failed to load {filename}: {e}")
 
+@app.get("/health")
+async def health_check():
+    return {"status": "ok", "documents_loaded": len(DOCUMENTS)}
+
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request, "is_admin": False})

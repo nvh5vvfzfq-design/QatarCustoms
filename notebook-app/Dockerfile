@@ -1,4 +1,5 @@
-FROM python:3.11-slim
+# Use a more complete base image just in case
+FROM python:3.11
 
 WORKDIR /app
 
@@ -7,4 +8,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}
+# Explicitly use shell to expand $PORT
+CMD uvicorn main:app --host 0.0.0.0 --port $PORT
