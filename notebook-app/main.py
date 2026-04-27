@@ -2,9 +2,14 @@ from fastapi import FastAPI, Request, UploadFile, File
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from pypdf import PdfReader
+import google.generativeai as genai
 import os
 
 app = FastAPI()
+
+# In-memory storage for simplicity
+DOCUMENTS = {} 
 
 # Mount static files
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -36,12 +41,6 @@ async def read_root(request: Request):
 @app.get("/admin", response_class=HTMLResponse)
 async def read_admin(request: Request):
     return templates.TemplateResponse("index.html", {"request": request, "is_admin": True})
-
-from pypdf import PdfReader
-import google.generativeai as genai
-
-# In-memory storage for simplicity
-DOCUMENTS = {} 
 
 @app.post("/upload")
 async def upload_pdf(file: UploadFile = File(...)):
