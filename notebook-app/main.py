@@ -15,6 +15,10 @@ DOCUMENTS = {}
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
+@app.get("/health")
+async def health():
+    return {"status": "ok"}
+
 @app.on_event("startup")
 async def startup_event():
     # Load existing PDFs from uploads folder
