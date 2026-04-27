@@ -15,37 +15,28 @@ DOCUMENTS = {}
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
-@app.get("/debug")
-async def debug():
-    import os
-    files = []
-    for root, dirs, filenames in os.walk("."):
-        for f in filenames:
-            files.append(os.path.join(root, f))
-    return {"cwd": os.getcwd(), "files": files[:100]} # Limit to 100 files
-
-# @app.on_event("startup")
-# async def startup_event():
-#     # Load existing PDFs from uploads folder
-#     if not os.path.exists("uploads"):
-#         os.makedirs("uploads")
-#     
-#     for filename in os.listdir("uploads"):
-#         if filename.endswith(".pdf"):
-#             try:
-#                 path = os.path.join("uploads", filename)
-#                 reader = PdfReader(path)
-#                 text = ""
-#                 for page in reader.pages:
-#                     text += page.extract_text() + "\n"
-#                 DOCUMENTS[filename] = text
-#                 print(f"Loaded existing document: {filename}")
-#             except Exception as e:
-#                 print(f"Failed to load {filename}: {e}")
+@app.on_event("startup")
+async def startup_event():
+    # Load existing PDFs from uploads folder
+    if not os.path.exists("uploads"):
+        os.makedirs("uploads")
+    
+    for filename in os.listdir("uploads"):
+        if filename.endswith(".pdf"):
+            try:
+                path = os.path.join("uploads", filename)
+                reader = PdfReader(path)
+                text = ""
+                for page in reader.pages:
+                    text += page.extract_text() + "\n"
+                DOCUMENTS[filename] = text
+                print(f"Loaded existing document: {filename}")
+            except Exception as e:
+                print(f"Failed to load {filename}: {e}")
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
-    return "<h1>Server is running!</h1><p>Checking template...</p>"
+    return templates.TemplateResponse("index.html", {"request": request, "is_admin": False})
 
 @app.get("/admin", response_class=HTMLResponse)
 async def read_admin(request: Request):
