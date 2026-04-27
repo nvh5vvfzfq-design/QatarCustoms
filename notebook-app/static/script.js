@@ -189,24 +189,28 @@ function escapeHtml(text) {
 }
 
 function formatAnswer(text) {
-    // Split on [LAW]...[/LAW] blocks and render them distinctly
-    const parts = text.split(/\[LAW\]([\s\S]*?)\[\/LAW\]/gi);
+    console.log("Formatting answer, length:", text.length);
+    // Flexible regex for [LAW]...[/LAW] with optional spaces
+    const regex = /\[\s*LAW\s*\]([\s\S]*?)\[\s*\/LAW\s*\]/gi;
+    const parts = text.split(regex);
+    console.log("Split into parts:", parts.length);
+    
     let html = '';
     for (let i = 0; i < parts.length; i++) {
+        const trimmed = parts[i].trim();
+        if (!trimmed) continue;
+
         if (i % 2 === 0) {
             // Regular answer text
-            const trimmed = parts[i].trim();
-            if (trimmed) {
-                html += `<div class="answer-text">${escapeHtml(trimmed).replace(/\n/g, '<br>')}</div>`;
-            }
+            html += `<div class="answer-text">${escapeHtml(trimmed).replace(/\n/g, '<br>')}</div>`;
         } else {
             // Law citation
             html += `<div class="law-citation">
                 <div class="law-citation-header">
                     <span class="material-icons" style="font-size: 16px;">gavel</span>
-                    <span>Legal Reference</span>
+                    <span>Legal Reference | مرجع قانوني</span>
                 </div>
-                <div class="law-citation-body">${escapeHtml(parts[i].trim()).replace(/\n/g, '<br>')}</div>
+                <div class="law-citation-body">${escapeHtml(trimmed).replace(/\n/g, '<br>')}</div>
             </div>`;
         }
     }

@@ -32,12 +32,13 @@ body {
 /* Sidebar */
 .sidebar {
     width: 300px;
-    background-color: var(--sidebar-bg);
-    border-right: 1px solid var(--border-color);
+    background-color: var(--primary-color);
+    color: white;
+    border-right: none;
     padding: 24px;
     display: flex;
     flex-direction: column;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
     z-index: 10;
 }
 
@@ -46,11 +47,14 @@ body {
     align-items: center;
     gap: 12px;
     margin-bottom: 40px;
-    color: var(--primary-color);
+    color: white;
 }
 
 .logo .material-icons {
     font-size: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px;
+    border-radius: 12px;
 }
 
 .logo-text h2 {
@@ -63,35 +67,43 @@ body {
 .logo-text .subtitle {
     font-size: 14px;
     font-weight: 400;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 .sources-section h3,
 .settings-section h3 {
-    font-size: 12px;
+    font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-muted);
-    margin-bottom: 12px;
-    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 16px;
+    font-weight: 700;
 }
 
 .source-item {
-    background: #F7F9FC !important;
-    border: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.2s;
     font-size: 13px !important;
-    color: var(--text-color);
+    color: white !important;
     display: flex;
     align-items: center;
     gap: 8px;
+    margin-bottom: 8px;
+    padding: 10px 14px !important;
+    border-radius: 10px !important;
+}
+
+.source-item:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    transform: translateX(4px);
 }
 
 .source-item::before {
     content: 'description';
     font-family: 'Material Icons';
     font-size: 16px;
-    color: var(--primary-color);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .add-btn {
@@ -101,19 +113,20 @@ body {
     gap: 8px;
     width: 100%;
     padding: 12px;
-    background: white;
-    border: 1px dashed var(--primary-color);
-    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px dashed rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
     cursor: pointer;
     font-family: inherit;
-    font-weight: 500;
-    color: var(--primary-color);
+    font-weight: 600;
+    color: white;
     transition: all 0.2s;
     margin-top: 10px;
 }
 
 .add-btn:hover {
-    background: #FFF5F7;
+    background: rgba(255, 255, 255, 0.25);
+    border-style: solid;
 }
 
 /* Chat Area */
@@ -230,40 +243,42 @@ body {
 }
 
 .law-citation {
-    background: linear-gradient(135deg, #FFF8F0 0%, #FEF3E2 100%);
-    border-left: 4px solid var(--primary-color);
-    border-radius: 0 12px 12px 0;
+    background: #FFFFFF;
+    border-left: 5px solid var(--primary-color);
+    border-radius: 4px 16px 16px 4px;
     padding: 0;
-    margin: 14px 0;
+    margin: 20px 0;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(138, 21, 56, 0.08);
-    transition: box-shadow 0.2s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+    border-left-width: 5px;
 }
 
 .law-citation:hover {
-    box-shadow: 0 4px 14px rgba(138, 21, 56, 0.15);
+    box-shadow: 0 15px 35px rgba(138, 21, 56, 0.1);
 }
 
 .law-citation-header {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 10px 16px;
-    background: rgba(138, 21, 56, 0.08);
+    gap: 8px;
+    padding: 12px 20px;
+    background: #FFF5F7;
     color: var(--primary-color);
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid rgba(138, 21, 56, 0.05);
 }
 
 .law-citation-body {
-    padding: 14px 18px;
-    font-family: 'Cairo', 'Georgia', serif;
+    padding: 20px 24px;
+    font-family: 'Cairo', sans-serif;
     font-size: 14px;
-    line-height: 1.8;
-    color: #3D2000;
-    font-style: italic;
+    line-height: 1.9;
+    color: var(--text-color);
+    background: white;
 }
 
 .ai-message .law-citation + .answer-text {

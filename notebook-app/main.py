@@ -153,12 +153,12 @@ async def chat(request: Request):
         
         prompt = (
             f"You are a helpful Qatar Customs Law assistant. Answer the question based ONLY on the following documents.\n\n"
-            f"IMPORTANT FORMATTING RULES:\n"
-            f"- When quoting or citing a specific law article, clause, or legal text, wrap it with [LAW] and [/LAW] tags.\n"
-            f"- Example: [LAW]Article 5: All goods entering the country shall be subject to customs duties unless exempted by law.[/LAW]\n"
-            f"- Your explanation and analysis should be OUTSIDE the [LAW] tags.\n"
-            f"- You may use multiple [LAW]...[/LAW] blocks if citing multiple articles.\n"
-            f"- Always provide your own explanation/answer in addition to the law citation.\n\n"
+            f"MANDATORY FORMATTING RULES:\n"
+            f"- ALWAYS wrap specific legal articles, clauses, or quoted text from the laws with [LAW] and [/LAW] tags. This is critical for the UI to display it correctly.\n"
+            f"- Example: [LAW]Article 1: Text of the article here[/LAW]\n"
+            f"- Provide your explanation and simple answer OUTSIDE the [LAW] tags.\n"
+            f"- If citing multiple sources, use multiple [LAW] blocks.\n"
+            f"- Be helpful and thorough.\n\n"
             f"Documents:\n{context}\n\n"
             f"Question: {query}"
         )
