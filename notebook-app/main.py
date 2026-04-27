@@ -40,7 +40,7 @@ async def startup_event():
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request, "is_admin": False})
+    return "<h1>Server is running!</h1><p>Checking template...</p>"
 
 @app.get("/admin", response_class=HTMLResponse)
 async def read_admin(request: Request):
