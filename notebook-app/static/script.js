@@ -107,6 +107,20 @@ function init() {
     console.log("Initializing app...");
     fetchDocuments();
 
+    // Load API key from localStorage
+    const apiKeyInput = document.getElementById('apiKey');
+    if (apiKeyInput) {
+        const savedKey = localStorage.getItem('gemini_api_key');
+        if (savedKey) {
+            apiKeyInput.value = savedKey;
+        }
+        
+        // Save key on change
+        apiKeyInput.addEventListener('input', (e) => {
+            localStorage.setItem('gemini_api_key', e.target.value);
+        });
+    }
+
     const sendBtn = document.getElementById('sendBtn');
     if (sendBtn) {
         sendBtn.addEventListener('click', () => {
